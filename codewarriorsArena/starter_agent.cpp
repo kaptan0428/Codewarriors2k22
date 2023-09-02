@@ -17,9 +17,7 @@ int maxdis2 = 0;
 int score_atmax;
 int score_at_secondmax;
 
-vector<pair<int,int>> moves {
-    {1,0} , {-1,0} , {0,1} , {0,-1}
-};
+vector<pair<int,int>> moves {{1,0} , {-1,0} , {0,1} , {0,-1}};
 
 bool isFree(int x,int y)
 {
@@ -83,8 +81,8 @@ int heuristic(){
         maxdis2 = 0;
         score_atmax = 0;
         score_at_secondmax = 0;
-        int temp = coinscore(playerPos[player][i].first , playerPos[player][i].second);
-        findpath(playerPos[player][i].first,playerPos[player][i].second,0);
+        int temp = coinscore(playerPos[player][i].first, playerPos[player][i].second);
+        findpath(playerPos[player][i].first, playerPos[player][i].second, 0);
         scr += (maxdis1*maxdis1*score_atmax);
         scr += (maxdis2*score_at_secondmax);
         scr += temp * temp;
@@ -122,6 +120,7 @@ int minMax(int depth , int maxTurn , int alpha , int beta){
                 for (int i = 0; i < 4; i++){
                     int x=playerPos[player][coin].first, y=playerPos[player][coin].second;
                     int nx = x + moves[i].first, ny = y + moves[i].second;
+
                     if(isFree(nx,ny)){
                         oldLastCoin=lastCoin[player];
                         lastCoin[player]=coin;
@@ -202,6 +201,7 @@ void findBestMove(){
                 lastCoin[player] = coin;
                 playerPos[player][coin].first = nx;
                 playerPos[player][coin].second = ny;
+
                 moveval = minMax(0 , false , -INF , +INF);
                 if(moveval >= bestval){
                     bestval = moveval;
@@ -221,7 +221,6 @@ void findBestMove(){
             }
         }
     }
-
     cout<<bestcoin<<" "<<bestmove.first<<" "<<bestmove.second<<endl;
 
 }
@@ -258,7 +257,7 @@ int main()
         for (int j = 0; j < m; j++)
             cin >> adj[i][j];
 
-    playerPos=vector<vector<pair<int,int>>>(3, vector<pair<int,int>>(4));
+    playerPos = vector<vector<pair<int, int>>>(3, vector<pair<int, int>>(4));
     for(int i=1;i<=2;i++)
         for(int j=1;j<=3;j++)
         cin >> playerPos[i][j].first >> playerPos[i][j].second;
