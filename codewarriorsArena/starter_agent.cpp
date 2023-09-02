@@ -81,7 +81,7 @@ int heuristic(){
         maxdis2 = 0;
         score_atmax = 0;
         score_at_secondmax = 0;
-        int temp = coinscore(playerPos[player][i].first, playerPos[player][i].second);
+        int temp = coinscore(playerPos[player][i].first , playerPos[player][i].second);
         findpath(playerPos[player][i].first, playerPos[player][i].second, 0);
         scr += (maxdis1*maxdis1*score_atmax);
         scr += (maxdis2*score_at_secondmax);
